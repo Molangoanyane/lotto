@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>South African Powerball Generator</title>
+<style>
+
+  .con {
+    margin: 15px auto;
+    max-width: 600px;
+    text-align: center;
+    padding: 20px 30px;
+    background: lightgray;
+    border-radius: 10px;
+  }
+      button {
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 15px;
+        background-color: mediumblue;
+        color: white;
+      }
+
+      #numbers, #output, #outputs {
+        margin-top: 20px;
+        font-size: 24px;
+      }
+
+      .menu {
+        width: fit-content;
+        text-align: center;
+        margin: 15px auto;
+        padding: 10px;
+      }
+
+      ul {
+        list-style-type: none;
+        text-decoration: none;
+        margin: 0 auto;
+        padding: 0;
+      }
+
+      li {
+        display: inline-block;
+        margin: 10px;
+      }
+
+      a {
+        color: black;
+        text-decoration: none;
+        margin: 0;
+        padding: 5px 10px;
+      }
+
+      a:hover {
+        color: dodgerblue;
+      }
+    </style>
+</head>
+<body>
+  <div class="menu">
+    
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="powa.html">PowerBall</a></li>
+      <li><a href="dail.html">Daily Lotto</a></li>
+      <li><a href="lott.html">Lotto</a></li>
+    </ul>
+  </div>
+
+  <div class="con">
+    <h2>PowerBall Numbers</h2>
+  
+  <button id="generateBtn">Generate Numbers</button>
+    <div id="numbers"></div>
+</div>
+
+<div class="con">
+<div class="switch"></div>
+<div class="container">
+  <h2>Daily Lotto</h2>
+  <button onclick="generateNumbers()">Generate Numbers</button>
+  <div id="output"></div>
+</div>
+</div>
+
+<div class="con">
+  <div class="switch"></div>
+  <div class="container">
+    <h2>Lotto</h2>
+    <button onclick="generateNumber()">Generate Numbers</button>
+    <div id="outputs"></div>
+  </div>
+</div>
+
+
+<script>
+const generateBtn = document.getElementById("generateBtn");
+      const numbersDiv = document.getElementById("numbers");
+
+      function generatePowerballNumbers() {
+        const mainNumbers = [];
+        const powerballNumber = [];
+
+        for (let i = 0; i < 5; i++) {
+          mainNumbers.push(getRandomNumber(1, 50));
+        }
+
+        powerballNumber.push(getRandomNumber(1, 20));
+
+        numbersDiv.innerHTML = `<p>Main Numbers: ${mainNumbers.sort((a, b) => a - b).join(", ")}</p>`
+          + `<p>Powerball Number: ${powerballNumber[0]}</p>`;
+      }
+
+      function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      generateBtn.addEventListener("click", generatePowerballNumbers);
+    
+  function generateNumbers() {
+    var numbers = [];
+    while (numbers.length < 5) {
+      var randomNum = Math.floor(Math.random() * 36) + 1;
+      if (!numbers.includes(randomNum)) {
+        numbers.push(randomNum);
+      }
+    }
+    var outputDiv = document.getElementById('output');
+    outputDiv.innerHTML = numbers.join(', ')
+  }
+
+  function generateNumber() {
+      var numbers = [];
+      while (numbers.length < 6) {
+        var randomNum = Math.floor(Math.random() * 52) + 1;
+        if (!numbers.includes(randomNum)) {
+          numbers.push(randomNum);
+        }
+      }
+      var outputDiv = document.getElementById('outputs');
+      outputDiv.innerHTML = numbers.join(', ')
+    }
+
+    </script>
+
+</body>
+</html>
